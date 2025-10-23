@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nguyễn Thế Trọng | Data-Driven Marketer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Inter', -apple-system, sans-serif; 
+            background: #F5F5F7;
+            color: #1D1D1F;
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+        
+        /* Navigation */
+        nav { 
+            position: fixed; top: 0; width: 100%; 
+            background: rgba(245,245,247,0.95); 
+            backdrop-filter: blur(20px); 
+            z-index: 1000; 
+            padding: 1rem 0;
+        }
+        .nav-container { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.5rem; font-weight: 700; }
+        .nav-links { display: flex; gap: 2rem; list-style: none; }
+        .nav-links a { color: #1D1D1F; text-decoration: none; font-weight: 500; transition: color 0.3s; }
+        .nav-links a:hover { color: #2d6c8d; }
+        .lang-toggle { background: none; border: 1px solid #D2D2D7; padding: 0.5rem 1rem; border-radius: 20px; cursor: pointer; }
+        
+        /* Hero */
+        .hero { 
+            min-height: 100vh; 
+            display: flex; align-items: center; 
+            text-align: center; 
+            padding-top: 80px;
+        }
+        .hero-content h1 { 
+            font-size: clamp(3.5rem, 10vw, 7rem); 
+            font-weight: 800; 
+            margin-bottom: 1.5rem; 
+            background: linear-gradient(135deg, #1D1D1F 0%, #2d6c8d 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero-content .summary { 
+            font-size: 1.4rem; 
+            max-width: 800px; 
+            margin: 0 auto 3rem; 
+            opacity: 0.9;
+        }
+        .profile-img { 
+            width: 200px; height: 200px; 
+            border-radius: 50%; 
+            border: 4px solid #2d6c8d; 
+            margin: 2rem auto;
+            box-shadow: 0 20px 60px rgba(45,108,141,0.3);
+        }
+        .cta { 
+            background: #2d6c8d; 
+            color: white; 
+            padding: 18px 48px; 
+            border: none; 
+            border-radius: 50px; 
+            font-size: 1.2rem; 
+            font-weight: 600;
+            cursor: pointer; 
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 12px 40px rgba(45,108,141,0.4);
+            text-decoration: none;
+            display: inline-block;
+        }
+        .cta:hover { 
+            background: #1e4f6a; 
+            transform: translateY(-4px); 
+            box-shadow: 0 20px 60px rgba(45,108,141,0.6);
+        }
+        
+        /* Sections */
+        section { padding: 120px 0; }
+        .section-title { 
+            font-size: 3.5rem; 
+            text-align: center; 
+            margin-bottom: 4rem; 
+            font-weight: 700;
+        }
+        
+        /* Projects */
+        .projects-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); 
+            gap: 2.5rem; 
+        }
+        .project-card { 
+            background: white; 
+            border-radius: 24px; 
+            padding: 2.5rem; 
+            box-shadow: 0 10px 50px rgba(0,0,0,0.08);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid #D2D2D7;
+            height: 100%;
+        }
+        .project-card:hover { 
+            transform: translateY(-12px); 
+            box-shadow: 0 30px 80px rgba(0,0,0,0.15);
+            border-color: #2d6c8d;
+        }
+        .project-title { font-size: 1.6rem; font-weight: 700; margin-bottom: 1rem; }
+        .metrics { 
+            font-size: 1.1rem; 
+            font-weight: 600; 
+            color: #2d6c8d; 
+            margin-top: 1rem;
+        }
+        
+        /* Contact */
+        .contact { background: white; border-radius: 24px; margin: 2rem; padding: 4rem; text-align: center; }
+        .contact-info { font-size: 1.2rem; margin-bottom: 2rem; opacity: 0.8; }
+        
+        /* Footer */
+        footer { 
+            background: white; 
+            padding: 3rem 0; 
+            text-align: center; 
+            border-top: 1px solid #D2D2D7;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) { 
+            .nav-links { display: none; }
+            section { padding: 80px 0; }
+            .section-title { font-size: 2.5rem; }
+        }
+        
+        /* Animations */
+        .fade-in { opacity: 0; transform: translateY(40px); transition: all 0.8s ease; }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="nav-container">
+                <div class="logo">NT</div>
+                <ul class="nav-links">
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <button class="lang-toggle" onclick="toggleLang()">EN</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero fade-in">
+        <div class="container">
+            <img src="https://drive.google.com/uc?id=1_XkUwPRkX4sGeWoDJqdhWD83XciN4jZi" alt="Nguyễn Thế Trọng" class="profile-img">
+            <h1 id="hero-title">NGUYỄN THẾ TRỌNG</h1>
+            <p id="hero-summary" class="summary">
+                Data-driven marketer với 1 năm kinh nghiệm thực thi chiến dịch digital. 
+                Đạt <strong>60M+ reach</strong> và <strong>3.2% CR</strong> qua TikTok growth tactics.
+            </p>
+            <a href="#contact" class="cta">Liên Hệ Ngay</a>
+        </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects">
+        <div class="container">
+            <h2 class="section-title fade-in">Featured Campaigns</h2>
+            <div class="projects-grid">
+                <div class="project-card fade-in">
+                    <h3 class="project-title">Vita Tree Supplements</h3>
+                    <p>Planned multi-channel TikTok/Meta campaigns across supplements</p>
+                    <p class="metrics">60M reach • 18M impressions • <strong>3.2% CR</strong></p>
+                </div>
+                <div class="project-card fade-in">
+                    <h3 class="project-title">Forever Key Cosmetics</h3>
+                    <p>Influencer-led TikTok campaigns</p>
+                    <p class="metrics">20M reach • 9M impressions • <strong>2.8% CR</strong></p>
+                </div>
+                <div class="project-card fade-in">
+                    <h3 class="project-title">Heineken Vietnam</h3>
+                    <p>Automated Social Dashboard + Media Buying</p>
+                    <p class="metrics"><strong>+22% budget efficiency</strong> • 70% faster reporting</p>
+                </div>
+                <div class="project-card fade-in">
+                    <h3 class="project-title">Sony Tet KOLs</h3>
+                    <p>120+ social posts across Vietnam</p>
+                    <p class="metrics">13M reach • 5M engagements • <strong>CPV -39%</strong></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="contact fade-in">
+        <div class="container">
+            <h2 style="font-size: 3rem; margin-bottom: 2rem;">Get In Touch</h2>
+            <p class="contact-info" id="contact-info">
+                (84) 975 806 712 | thetrongnguyen204@gmail.com
+            </p>
+            <a href="https://www.linkedin.com/in/nguyễn-thế-trọng-293a34260/" target="_blank" class="cta">
+                <i class="fab fa-linkedin"></i> LinkedIn Profile
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p style="opacity: 0.6;">© 2025 Nguyễn Thế Trọng. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+
+        // Fade in animation
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        });
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        // Language toggle (simple)
+        function toggleLang() {
+            const lang = document.querySelector('.lang-toggle').textContent;
+            if (lang === 'EN') {
+                document.querySelector('.lang-toggle').textContent = 'VI';
+                document.getElementById('hero-title').textContent = 'NGUYỄN THẾ TRỌNG';
+                document.getElementById('hero-summary').innerHTML = 'Data-driven marketer with 1 year in digital & campaign execution. Delivered <strong>60M+ reach</strong> and <strong>3.2% CR</strong> via TikTok growth tactics.';
+                document.getElementById('contact-info').textContent = '(84) 975 806 712 | thetrongnguyen204@gmail.com';
+            } else {
+                document.querySelector('.lang-toggle').textContent = 'EN';
+                document.getElementById('hero-title').textContent = 'NGUYỄN THẾ TRỌNG';
+                document.getElementById('hero-summary').innerHTML = 'Data-driven marketer với 1 năm kinh nghiệm thực thi chiến dịch digital. Đạt <strong>60M+ reach</strong> và <strong>3.2% CR</strong> qua TikTok growth tactics.';
+                document.getElementById('contact-info').textContent = '(84) 975 806 712 | thetrongnguyen204@gmail.com';
+            }
+        }
+    </script>
+</body>
+</html>
